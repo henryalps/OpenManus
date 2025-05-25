@@ -1,1 +1,1 @@
-"""Service package for OpenManus workflow management."""
+"""Service package for IntelliAgent workflow management."""

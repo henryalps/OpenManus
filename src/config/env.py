@@ -14,11 +14,11 @@ BASIC_MODEL = os.getenv("BASIC_MODEL", "gemini-2.0-flash")
 BASIC_BASE_URL = os.getenv("BASIC_BASE_URL")
 BASIC_API_KEY = os.getenv("BASIC_API_KEY")
 
-# Azure OpenAI配置（按LLM类型区分）
+# Azure OpenAI configuration (distinguished by LLM type)
 AZURE_API_BASE = os.getenv("AZURE_API_BASE")
 AZURE_API_KEY = os.getenv("AZURE_API_KEY")
 AZURE_API_VERSION = os.getenv("AZURE_API_VERSION")
-# 各类型专用部署名称
+# Dedicated deployment names for each type
 BASIC_AZURE_DEPLOYMENT = os.getenv("BASIC_AZURE_DEPLOYMENT")
 VL_AZURE_DEPLOYMENT = os.getenv("VL_AZURE_DEPLOYMENT")
 REASONING_AZURE_DEPLOYMENT = os.getenv("REASONING_AZURE_DEPLOYMENT")

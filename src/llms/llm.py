@@ -1,6 +1,3 @@
-import os
-from typing import Literal, Type
-
 from src.config.agents import LLMType
 from src.config.env import (
     BASIC_API_KEY,
@@ -12,13 +9,14 @@ from src.config.env import (
     VL_API_KEY,
     VL_BASE_URL,
     VL_MODEL,
-    AZURE_API_BASE,
-    AZURE_API_KEY,
-    AZURE_API_VERSION,
+    # AZURE_API_BASE, # F401 unused
+    # AZURE_API_KEY, # F401 unused
+    # AZURE_API_VERSION, # F401 unused
     BASIC_AZURE_DEPLOYMENT,
     VL_AZURE_DEPLOYMENT,
-    REASONING_AZURE_DEPLOYMENT
+    REASONING_AZURE_DEPLOYMENT,
 )
+
 
 class PlaceholderLLM:
     def __init__(self, model_name):
@@ -26,6 +24,7 @@ class PlaceholderLLM:
 
     def invoke(self, messages):
         return f"Placeholder LLM: {self.model_name} invoked with messages: {messages}"
+
 
 def get_llm_by_type(llm_type: LLMType):
     if llm_type == "reasoning":

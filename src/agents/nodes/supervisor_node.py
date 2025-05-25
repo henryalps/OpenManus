@@ -1,26 +1,28 @@
 import logging
-import json_repair
 from copy import deepcopy
-from typing import Literal, Dict, Any
+from typing import Dict, Any
 
-from langchain_core.messages import HumanMessage, BaseMessage
+from langchain_core.messages import BaseMessage
 from langgraph.types import Command
 
 from src.llms.llm import get_llm_by_type
 from src.config import TEAM_MEMBERS
 from src.config.agents import AGENT_LLM_MAP
-from src.prompts.template import OpenManusPromptTemplate
-from src.utils.json_utils import repair_json_output
-from .types import State, Router # Import State and Router types
+from src.prompts.template import IntelliAgentPromptTemplate
+from .types import State, Router  # Import State and Router types
 
 logger = logging.getLogger(__name__)
 
-RESPONSE_FORMAT = "Response from {}:\n\n<response>\n{}\n</response>\n\n*Please execute the next step.*"
+RESPONSE_FORMAT = (
+    "Response from {}:\n\n<response>\n{}\n</response>\n\n"
+    "*Please execute the next step.*"
+)
 
-def supervisor_node(state: State) -> Dict[str, Any]: # Modified return type to Dict
+
+def supervisor_node(state: State) -> Dict[str, Any]:  # Modified return type to Dict
     """Supervisor node that decides which agent should act next."""
     logger.info("Supervisor evaluating next action")
-    messages = OpenManusPromptTemplate.apply_prompt_template("supervisor", state)
+    messages = IntelliAgentPromptTemplate.apply_prompt_template("supervisor", state)
     # preprocess messages to make supervisor execute better.
     messages = deepcopy(messages)
     for message in messages:

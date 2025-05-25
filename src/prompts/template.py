@@ -7,8 +7,8 @@ from langchain_core.prompts import PromptTemplate
 from langgraph.prebuilt.chat_agent_executor import AgentState
 
 
-class OpenManusPromptTemplate:
-    """OpenManus prompt template manager for handling agent-specific prompts."""
+class IntelliAgentPromptTemplate:
+    """IntelliAgent prompt template manager for handling agent-specific prompts."""
 
     @staticmethod
     def get_prompt_template(prompt_name: str) -> str:
@@ -21,17 +21,19 @@ class OpenManusPromptTemplate:
             Processed template string with variable placeholders
         """
         template_path = os.path.join(os.path.dirname(__file__), f"{prompt_name}.md")
-        with open(template_path, 'r', encoding='utf-8') as f:
+        with open(template_path, "r", encoding="utf-8") as f:
             template = f.read()
 
         # Escape curly braces for string formatting
         template = template.replace("{", "{{").replace("}", "}}")
         # Convert <<VAR>> to {VAR} format
-        template = re.sub(r"<<([^>>]+)>>", r"{1}", template)
+        template = re.sub(r"<<([^>>]+)>>", r"{1}", template)  # This line seems okay
         return template
 
     @staticmethod
-    def apply_prompt_template(prompt_name: str, state: AgentState) -> List[Dict[str, str]]:
+    def apply_prompt_template(
+        prompt_name: str, state: AgentState
+    ) -> List[Dict[str, str]]:
         """Apply a prompt template with current state variables.
 
         Args:
@@ -47,7 +49,7 @@ class OpenManusPromptTemplate:
         # Create and format the system prompt
         system_prompt = PromptTemplate(
             input_variables=["CURRENT_TIME"],
-            template=OpenManusPromptTemplate.get_prompt_template(prompt_name),
+            template=IntelliAgentPromptTemplate.get_prompt_template(prompt_name),
         ).format(CURRENT_TIME=current_time, **state)
 
         # Combine system prompt with existing messages

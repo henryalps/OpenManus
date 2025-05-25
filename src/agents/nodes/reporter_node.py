@@ -1,20 +1,22 @@
 import logging
-import json_repair
-from typing import Literal, Dict, Any
+from typing import Dict, Any
 from langchain_core.messages import HumanMessage
 from langgraph.types import Command
 
-from src.agents import reporter_agent # Import reporter agent
+from src.agents import reporter_agent  # Import reporter agent
 from src.utils.json_utils import repair_json_output
-from src.prompts.template import OpenManusPromptTemplate
-from .types import State # Import State type
+
+# IntelliAgentPromptTemplate was F401 unused
+from .types import State  # Import State type
 
 logger = logging.getLogger(__name__)
 
-def reporter_node(state: State) -> Dict[str, Any]: # Modified return type to Dict
+
+def reporter_node(state: State) -> Dict[str, Any]:  # Modified return type to Dict
     """Reporter node that write a final report."""
     logger.info("Reporter writing final report")
-    messages = OpenManusPromptTemplate.apply_prompt_template("reporter", state)
+    # messages variable was unused as per Flake8 F841
+    # IntelliAgentPromptTemplate.apply_prompt_template("reporter", state)
     response = reporter_agent.invoke(state)
     logger.debug(f"Current state messages: {state['messages']}")
     response_content = response.content
@@ -30,5 +32,5 @@ def reporter_node(state: State) -> Dict[str, Any]: # Modified return type to Dic
                 )
             ]
         },
-        goto="supervisor", # Go back to supervisor to decide next step
+        goto="supervisor",  # Go back to supervisor to decide next step
     )

@@ -1,7 +1,7 @@
-# OpenManus
+# Betablu
 
 <p align="center">
-  <img src="docs/logo.png" alt="OpenManus Logo">
+  <img src="docs/betablu_logo.png" alt="Betablu Logo">
 </p>
 
 ![License](https://img.shields.io/badge/license-UNLICENSE-blue.svg)
@@ -11,9 +11,9 @@
 
 ## Overview
 
-OpenManus is an open-source project aimed at replicating the capabilities of the Manus AI agent, a groundbreaking general-purpose AI developed by Monica. Manus is known for its ability to autonomously execute complex tasks—ranging from personalized travel planning to stock analysis—surpassing models like GPT-4 on the GAIA benchmark. OpenManus seeks to bring these capabilities to the open-source community using a modular, containerized framework built with Docker, Python, and JavaScript.
+Betablu is an open-source project aimed at replicating the capabilities of the IntelliAgent AI agent, a groundbreaking general-purpose AI developed by Monica. IntelliAgent is known for its ability to autonomously execute complex tasks—ranging from personalized travel planning to stock analysis—surpassing models like GPT-4 on the GAIA benchmark. Betablu seeks to bring these capabilities to the open-source community using a modular, containerized framework built with Docker, Python, and JavaScript.
 
-This repository provides a starting point for developers and researchers to build, deploy, and experiment with a multi-agent AI system. Our goal is to create a flexible and extensible platform that mirrors Manus's autonomous task execution while fostering community contributions.
+This repository provides a starting point for developers and researchers to build, deploy, and experiment with a multi-agent AI system. Our goal is to create a flexible and extensible platform that mirrors IntelliAgent's autonomous task execution while fostering community contributions.
 
 ## Features
 
@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/henryalps/OpenManus.git
-cd OpenManus
+cd Betablu
 ```
 
 ### 2. Build and Run with Docker
@@ -53,7 +53,7 @@ This will launch:
 - FastAPI server for task delegation and execution
 
 ### 3. Test the System
-Once running, you can interact with OpenManus via:
+Once running, you can interact with Betablu via:
 - CLI: Use the provided Python client (`python client.py`)
 - API: Send requests to http://localhost:8000 (see API docs below)
 - Web UI: Access http://localhost:3000
@@ -65,7 +65,7 @@ python client.py --task "Plan a 3-day trip to Tokyo"
 
 ### Project Structure
 ```
-OpenManus/
+Betablu/
 ├── docker/               # Docker configurations
 │   ├── frontend/        # Next.js frontend container
 │   │   └── Dockerfile   # Frontend container configuration
@@ -159,7 +159,7 @@ Please read `CONTRIBUTING.md` for guidelines.
 - Release v1.0 with stable task execution.
 
 ### Inspiration
-OpenManus is inspired by:
+Betablu is inspired by:
 - The langmanus project (GitHub).
 - The official Manus project (manus.im).
 - The open-Manus community effort (GitHub).
@@ -169,6 +169,6 @@ OpenManus is inspired by:
 This project is licensed under the UNLICENSE. See `LICENSE` for details.
 
 ### Contact
-For questions or collaboration, reach out via GitHub Issues or email [henryalps@gmail.com](mailto:henryalps@gmail.com).
+For questions or collaboration, reach out via GitHub Issues or email [contact@betablu.com](mailto:contact@betablu.com).
 
 Happy coding! Let's build the future of AI agents together!

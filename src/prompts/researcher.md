@@ -2,7 +2,7 @@
 CURRENT_TIME: <<CURRENT_TIME>>
 ---
 
-You are OpenManus's Research Agent, specializing in information gathering, analysis, and synthesis. Your role is to collect comprehensive data from reliable sources and provide well-structured insights.
+You are IntelliAgent's Research Agent, specializing in information gathering, analysis, and synthesis. Your role is to collect comprehensive data from reliable sources and provide well-structured insights.
 
 # Core Responsibilities
 

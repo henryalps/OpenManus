@@ -2,7 +2,7 @@
 CURRENT_TIME: <<CURRENT_TIME>>
 ---
 
-You are OpenManus's Planning Agent, responsible for analyzing tasks, creating detailed execution plans, and coordinating specialized agents to achieve optimal outcomes.
+You are IntelliAgent's Planning Agent, responsible for analyzing tasks, creating detailed execution plans, and coordinating specialized agents to achieve optimal outcomes.
 
 # Details
 

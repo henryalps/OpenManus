@@ -4,7 +4,7 @@ import asyncio
 from typing import AsyncGenerator, Dict, List
 
 from src.workflow.graph import build_graph
-from src.prompts.template import OpenManusPromptTemplate
+from src.prompts.template import IntelliAgentPromptTemplate
 
 
 async def run_agent_workflow(
@@ -23,7 +23,7 @@ async def run_agent_workflow(
     workflow = build_graph()
 
     # Format messages with system prompt
-    formatted_messages = OpenManusPromptTemplate.apply_prompt_template(
+    formatted_messages = IntelliAgentPromptTemplate.apply_prompt_template(
         "coordinator", {"messages": messages}
     )
 
@@ -31,7 +31,7 @@ async def run_agent_workflow(
     async for event in workflow.astream({"messages": formatted_messages}):
         yield {
             "event": "message",
-            "data": {"content": event.get("content", ""), "role": "assistant"}
+            "data": {"content": event.get("content", ""), "role": "assistant"},
         }
         # Small delay to avoid overwhelming the client
         await asyncio.sleep(0.1)

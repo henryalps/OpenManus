@@ -6,8 +6,8 @@ from .research_agent import research_agent
 from .reporter_agent import reporter_agent
 
 __all__ = [
-    'browser_agent',
-    'coder_agent',
-    'research_agent',
-    'reporter_agent',
+    "browser_agent",
+    "coder_agent",
+    "research_agent",
+    "reporter_agent",
 ]

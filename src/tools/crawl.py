@@ -19,7 +19,7 @@ def crawl_tool(
     try:
         crawler = Crawler()
         article = crawler.crawl(url)
-        return {"role": "user", "content": article.to_message()}
+        return {"role": "user", "content": article.to_message()}  # Wrapped
     except BaseException as e:
         error_msg = f"Failed to crawl. Error: {repr(e)}"
         logger.error(error_msg)
