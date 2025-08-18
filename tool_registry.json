@@ -1,0 +1,58 @@
+{
+    "bash": {
+        "module": "src.tools.bash_tool",
+        "function": "bash_tool"
+    },
+    "execute_python_code": {
+        "module": "src.tools.code_executor",
+        "function": "execute_python_code"
+    },
+    "crawl": {
+        "module": "src.tools.crawl",
+        "function": "crawl_tool"
+    },
+    "python_repl": {
+        "module": "src.tools.python_repl",
+        "function": "python_repl_tool"
+    },
+    "search": {
+        "module": "src.tools.search",
+        "function": "bing_tool"
+    },
+    "text_to_speech": {
+        "module": "src.tools.tts",
+        "function": "text_to_speech"
+    },
+    "create_tool": {
+        "module": "src.tools.tool_creator",
+        "function": "create_tool"
+    },
+    "build_knowledge_graph": {
+        "module": "src.tools.graphrag",
+        "function": "build_knowledge_graph"
+    },
+    "query_knowledge_graph": {
+        "module": "src.tools.graphrag",
+        "function": "query_knowledge_graph"
+    },
+    "create_prompt": {
+        "module": "src.tools.prompt_manager",
+        "function": "create_prompt"
+    },
+    "update_prompt": {
+        "module": "src.tools.prompt_manager",
+        "function": "update_prompt"
+    },
+    "delete_prompt": {
+        "module": "src.tools.prompt_manager",
+        "function": "delete_prompt"
+    },
+    "search_and_summarize": {
+        "module": "src.tools.custom.search_and_summarize",
+        "function": "get_llm_by_type"
+    },
+    "my_new_tool": {
+        "module": "src.tools.custom.my_new_tool",
+        "function": "my_new_tool"
+    }
+}

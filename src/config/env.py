@@ -34,3 +34,11 @@ CHROME_HEADLESS = os.getenv("CHROME_HEADLESS", "False") == "True"
 CHROME_PROXY_SERVER = os.getenv("CHROME_PROXY_SERVER")
 CHROME_PROXY_USERNAME = os.getenv("CHROME_PROXY_USERNAME")
 CHROME_PROXY_PASSWORD = os.getenv("CHROME_PROXY_PASSWORD")
+
+# TTS Configuration
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+
+# Neo4j Configuration
+NEO4J_URI = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+NEO4J_USERNAME = os.getenv("NEO4J_USERNAME", "neo4j")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")

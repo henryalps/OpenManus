@@ -7,4 +7,9 @@ logger = logging.getLogger(__name__)
 
 # Initialize Bing search tool using browser tool with logging
 LoggedBrowserSearch = create_logged_tool(browser_tool.__class__)  # Use the class of browser_tool
-bing_tool = LoggedBrowserSearch(name="bing_search", description="Search Bing using a headless browser.") # Updated name and description
+bing_tool = LoggedBrowserSearch(
+    name="bing_search",
+    description="Search Bing for a query and return the top search results.",
+    args_schema=browser_tool.args_schema,
+)
+bing_tool.__doc__ = "Use this tool to search the web with Bing. The input should be a search query."

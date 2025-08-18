@@ -18,8 +18,8 @@ def crawl_tool(
     """Use this to crawl a url and get a readable content in markdown format."""
     try:
         crawler = Crawler()
-        article = crawler.crawl(url)
-        return {"role": "user", "content": article.to_message()}
+        content = crawler.crawl(url)
+        return {"role": "user", "content": content}
     except BaseException as e:
         error_msg = f"Failed to crawl. Error: {repr(e)}"
         logger.error(error_msg)

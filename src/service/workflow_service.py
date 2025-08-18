@@ -28,7 +28,8 @@ async def run_agent_workflow(
     )
 
     # Run workflow
-    async for event in workflow.astream({"messages": formatted_messages}):
+    initial_state = {"messages": formatted_messages, "next": "supervisor"}
+    async for event in workflow.astream(initial_state):
         yield {
             "event": "message",
             "data": {"content": event.get("content", ""), "role": "assistant"}
