@@ -27,7 +27,7 @@ class OpenManusPromptTemplate:
         # Escape curly braces for string formatting
         template = template.replace("{", "{{").replace("}", "}}")
         # Convert <<VAR>> to {VAR} format
-        template = re.sub(r"<<([^>>]+)>>", r"{1}", template)
+        template = re.sub(r"<<([^>>]+)>>", r"{\1}", template)
         return template
 
     @staticmethod
@@ -41,14 +41,33 @@ class OpenManusPromptTemplate:
         Returns:
             List of message dictionaries with system prompt and state messages
         """
+        from src.config import TEAM_MEMBERS
+
         # Format current time in a consistent format
         current_time = datetime.now().strftime("%a %b %d %Y %H:%M:%S %z")
 
+        # Get the template
+        template_str = OpenManusPromptTemplate.get_prompt_template(prompt_name)
+
+        # Build template variables
+        template_vars = {
+            "CURRENT_TIME": current_time,
+            "TEAM_MEMBERS": str(TEAM_MEMBERS),
+        }
+
+        # Add state variables
+        template_vars.update(state)
+
+        # Determine which variables are actually in the template
+        import re
+        found_vars = re.findall(r'\{([^}]+)\}', template_str)
+        input_variables = list(set(found_vars))
+
         # Create and format the system prompt
         system_prompt = PromptTemplate(
-            input_variables=["CURRENT_TIME"],
-            template=OpenManusPromptTemplate.get_prompt_template(prompt_name),
-        ).format(CURRENT_TIME=current_time, **state)
+            input_variables=input_variables,
+            template=template_str,
+        ).format(**template_vars)
 
         # Combine system prompt with existing messages
         return [{"role": "system", "content": system_prompt}] + state["messages"]
