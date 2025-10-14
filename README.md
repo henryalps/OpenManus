@@ -52,15 +52,26 @@ This will launch:
 - Frontend container serving the Next.js web interface
 - FastAPI server for task delegation and execution
 
-### 3. Test the System
-Once running, you can interact with OpenManus via:
-- CLI: Use the provided Python client (`python client.py`)
-- API: Send requests to http://localhost:8000 (see API docs below)
-- Web UI: Access http://localhost:3000
+### 3. Configure API Keys (Required)
 
-Example CLI command:
+Before you can use OpenManus, you need to configure your LLM API keys. See the [Configuration](#configuration) section below for detailed instructions.
+
+### 4. Test the System
+Once configured, you can interact with OpenManus via:
+- **CLI**: Use the provided Python client
+  ```bash
+  python src/client.py --task "Plan a 3-day trip to Tokyo"
+  ```
+- **Web UI**: Access http://localhost:3000 in your browser
+- **API**: Send requests directly to http://localhost:8000 (see API docs below)
+
+Example CLI commands:
 ```bash
-python client.py --task "Plan a 3-day trip to Tokyo"
+# Simple question
+python src/client.py --task "What's the weather like in Tokyo?"
+
+# Complex task
+python src/client.py --task "Analyze Tesla stock trends for the last month"
 ```
 
 ### Project Structure
@@ -100,46 +111,84 @@ OpenManus/
 ```
 
 ### Configuration
-Edit the `docker-compose.yml` file to customize:
+
+#### API Keys Setup (Required for AI functionality)
+
+Create a `.env` file in the project root directory with your LLM API keys:
+
+```env
+# Basic LLM (used for most agents)
+BASIC_API_KEY=your-openai-api-key-here
+BASIC_BASE_URL=https://api.openai.com/v1
+BASIC_MODEL=gpt-3.5-turbo
+
+# Reasoning LLM (for complex tasks) - Optional
+REASONING_API_KEY=your-deepseek-api-key
+REASONING_BASE_URL=https://api.deepseek.com/v1
+REASONING_MODEL=deepseek-r1
+
+# Vision-Language LLM (for image tasks) - Optional
+VL_API_KEY=your-api-key-here
+VL_BASE_URL=https://api.openai.com/v1
+VL_MODEL=gpt-4o
+```
+
+**Supported LLM Providers:**
+- OpenAI (GPT-3.5, GPT-4, GPT-4o)
+- DeepSeek (deepseek-r1)
+- Google Gemini
+- Azure OpenAI
+- Any OpenAI-compatible API
+
+After creating the `.env` file, restart the containers:
+```bash
+docker-compose restart unified
+```
+
+#### Docker Compose Configuration
+
+The current `docker-compose.yml` structure:
 ```yaml
 services:
-  backend:
-    build: 
+  unified:
+    build:
       context: .
       dockerfile: docker/unified/Dockerfile
     ports:
-      - "8000:8000"  # FastAPI port
-    environment:
-      - WEB_BROWSER_API_KEY=your_key_here
-    volumes:
-      - ./src:/app/src
-      - ./data:/app/data
+      - "8000:8000"  # FastAPI backend server
 
   frontend:
     build:
       context: .
       dockerfile: docker/frontend/Dockerfile
     ports:
-      - "3000:3000"  # Web UI port
+      - "3000:3000"  # Next.js web interface
     depends_on:
-      - backend
+      - unified
 ```
+
+Environment variables are loaded from the `.env` file automatically.
 
 ### API Documentation
 The agent server exposes a REST API at http://localhost:8000. Key endpoints:
 
-**POST /task**: Submit a task for execution.
-```json
-Body: { "task": "Analyze Tesla stock trends" }
-Response: { "status": "success", "result": "..." }
+**POST /api/chat/stream**: Submit a message and receive streaming response.
+```bash
+curl -X POST http://localhost:8000/api/chat/stream \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "content": "Hello, how are you?"}]}'
 ```
 
-**GET /status**: Check system health.
-```json
-Response: { "status": "running" }
+Response format (Server-Sent Events):
+```
+event: message
+data: {"content": "AI response here", "role": "assistant"}
 ```
 
-Full API docs are available in `docs/api.md`.
+**GET /docs**: Interactive API documentation (Swagger UI)
+- Access at http://localhost:8000/docs
+
+For more details, see the auto-generated API docs at `/docs` when the server is running.
 
 ### Contributing
 We welcome contributions! To get started:
