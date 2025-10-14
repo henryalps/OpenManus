@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["sh", "/app/docker/unified/start.sh"]
+CMD ["bash", "/app/docker/unified/start.sh"]
