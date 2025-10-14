@@ -3,8 +3,9 @@
 import asyncio
 from typing import AsyncGenerator, Dict, List
 
+from langchain_core.messages import HumanMessage, AIMessage
+
 from src.workflow.graph import build_graph
-from src.prompts.template import OpenManusPromptTemplate
 
 
 async def run_agent_workflow(
@@ -22,16 +23,19 @@ async def run_agent_workflow(
     # Initialize workflow graph
     workflow = build_graph()
 
-    # Format messages with system prompt
-    formatted_messages = OpenManusPromptTemplate.apply_prompt_template(
-        "coordinator", {"messages": messages}
-    )
+    # Convert dict messages to LangChain message objects
+    langchain_messages = []
+    for msg in messages:
+        if msg.role == "user":
+            langchain_messages.append(HumanMessage(content=msg.content))
+        elif msg.role == "assistant":
+            langchain_messages.append(AIMessage(content=msg.content))
 
     # Run workflow
-    async for event in workflow.astream({"messages": formatted_messages}):
+    async for event in workflow.astream({"messages": langchain_messages}):
         yield {
             "event": "message",
-            "data": {"content": event.get("content", ""), "role": "assistant"}
+            "data": {"content": str(event), "role": "assistant"}
         }
         # Small delay to avoid overwhelming the client
         await asyncio.sleep(0.1)

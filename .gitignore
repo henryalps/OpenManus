@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# IDE-specific directories
+.claude/
+
+# Internal planning documents
+COMMIT_PLAN.md
+NEXT_STEPS.md

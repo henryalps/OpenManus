@@ -10,6 +10,7 @@ langchain>=0.1.0
 langchain-core>=0.1.0
 langchain-community>=0.0.10
 langchain-experimental>=0.0.10
+langchain-openai>=0.2.0
 json-repair>=0.3.0
 pytest>=7.0.0
 pytest-cov>=4.0.0

@@ -2,6 +2,7 @@ import logging
 import json_repair
 from typing import Literal, Dict, Any
 from langchain_core.messages import HumanMessage
+from langgraph.types import Command
 
 from src.agents import browser_agent # Import browser agent
 from src.utils.json_utils import repair_json_output
