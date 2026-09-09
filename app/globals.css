@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: theme("colors.canvas.bg");
+  color: theme("colors.ink.DEFAULT");
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Range inputs: thin track, brand thumb. */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: theme("colors.brand.DEFAULT");
+  cursor: pointer;
+  margin-top: -1px;
+}

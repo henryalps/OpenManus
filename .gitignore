@@ -169,3 +169,27 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+.gstack/
+
+# Node / Next.js
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local env and editor backups
+.env.save
+*.save
+src/client.py[ ]
+
+# Claude Code / agent tooling: local state, worktrees and installed skills stay local
+.claude/settings.local.json
+.claude/worktrees/
+.claude/skills/
+.agents/
+skills-lock.json
+
+# Sibling projects that live in this checkout but have their own homes
+brand-factory-site/
+harare-road-reports/
+my-video/
