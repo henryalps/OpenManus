@@ -11,6 +11,7 @@ services:
       - PYTHONPATH=/app
       - FLASK_APP=src/server.py
       - FLASK_ENV=development
+      - WEB_BROWSER_API_KEY=YOUR_BROWSER_KEY_HERE
 
   frontend:
     build:

@@ -1,0 +1,87 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "harare-road-reports",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/perlebadza/OpenManus/harare-road-reports && npm run dev -- --port 3007 --strictPort"
+      ],
+      "port": 3007
+    },
+    {
+      "name": "brand-factory",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "-p",
+        "3002"
+      ],
+      "port": 3002
+    },
+    {
+      "name": "brand-factory-site",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/perlebadza/Developer/brand-factory-site && npm run dev"
+      ],
+      "port": 3010
+    },
+    {
+      "name": "unbothered",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/perlebadza/Desktop/unbothered",
+        "--",
+        "-p",
+        "3004"
+      ],
+      "port": 3004
+    },
+    {
+      "name": "dp-hub",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/perlebadza/Developer/dp-hub && npm run dev -- --port 3105"
+      ],
+      "port": 3105
+    },
+    {
+      "name": "dp-hub-ls",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/perlebadza/Developer/dp-hub && npm run dev"
+      ],
+      "autoPort": true
+    },
+    {
+      "name": "nexa-events",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd /Users/perlebadza/Desktop/Clients/NEXA.CD/nexa-events && bunx --bun vite dev --port 3005"
+      ],
+      "port": 3005
+    },
+    {
+      "name": "nexa-console",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "/Users/perlebadza/Developer/nexa-console"
+      ],
+      "autoPort": true
+    }
+  ]
+}
